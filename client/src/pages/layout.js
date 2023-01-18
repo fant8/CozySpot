@@ -18,6 +18,9 @@ const Layout = () => {
               <li>
                 <Link to="/merge">Merge Playlists</Link>
               </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
               <h1>CozyZone</h1>
             </ul>
           </nav>
