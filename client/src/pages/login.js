@@ -1,28 +1,22 @@
 import React from "react";
 import { useState } from "react";
-
+const SpotifyWebAPI = require('spotify-web-api-node')
 const Login = () => {
 
 
     const [token, setToken] = useState("")
 
     function authenticate() {
-        const request = require('request');
-        // let response = request.get("localhost:3000/login")
-        /* Load the HTTP library */
-        // var http = require('http');
-
-        /* Create an HTTP server to handle responses */
-
-        // http
-        //     .createServer(function (request, response) {
-        //         response.writeHead(200, { 'Content-Type': 'text/plain' });
-        //         response.write('Hello World');
-        //         response.end();
-        //     })
-        //     .listen(8888);
-
-
+        let spotifyApi = new SpotifyWebAPI({
+            clientId: 'id',
+            clientSecret: 'sec',
+            redirectUri: 'uri'
+        });
+        let scopes = ['user-read-private', 'user-read-email'];
+        let state = 'randomStringDesuNe';
+        let authURL = spotifyApi.createAuthorizeURL(scopes, state);
+        
+        window.location.href=authURL;
     }
 
     return (
