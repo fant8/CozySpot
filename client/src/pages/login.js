@@ -6,7 +6,7 @@ const SpotifyWebAPI = require('spotify-web-api-node');
 const Login = () => {
     const [queryParams] = useSearchParams();
     const [token, setToken] = useState("");
-    const [userInfo, updateUserInfo] = useState(['empty']);
+    const [userInfo, updateUserInfo] = useState({});
     const spotifyApi = new SpotifyWebAPI({
         clientId: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
@@ -14,9 +14,7 @@ const Login = () => {
     });
     useEffect(() => {
         fetchToken();
-        if (token){
-            getUserInfo();
-        }
+        getUserInfo();
     });
 
     function fetchToken() {
@@ -34,11 +32,13 @@ const Login = () => {
     }
 
     function getUserInfo() {
-        spotifyApi.getMe()
-        .then(data => {
-            updateUserInfo([data.body])
-        })
-        .catch(_ => console.log("error"));
+        if (token) {
+            spotifyApi.getMe()
+            .then(data => {
+                updateUserInfo(data.body)
+            })
+            .catch(res => console.log("error"));
+        }
     }
 
     return (
