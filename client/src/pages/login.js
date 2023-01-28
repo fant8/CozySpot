@@ -6,7 +6,7 @@ const SpotifyWebAPI = require('spotify-web-api-node');
 const Login = () => {
     const [queryParams] = useSearchParams();
     const [token, setToken] = useState("");
-    const [userInfo, updateUserInfo] = useState([]);
+    const [userInfo, updateUserInfo] = useState(['empty']);
     const spotifyApi = new SpotifyWebAPI({
         clientId: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
@@ -46,7 +46,7 @@ const Login = () => {
             <input></input>
             <input></input>
             <button onClick={() => authenticate()}>Log in with Spotify</button>
-            <p>{token ? "Login Successful!" : userInfo[0]}</p>
+            <p>{token ? "Login Successful! "  + String(userInfo) : "unsuccessful"}</p>
         </div>
     )
 
