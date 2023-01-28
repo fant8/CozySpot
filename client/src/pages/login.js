@@ -1,11 +1,20 @@
 import React from "react";
-import { useState } from "react";
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../../../apikeys"
-const SpotifyWebAPI = require('spotify-web-api-node')
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../apikeys";
+const SpotifyWebAPI = require('spotify-web-api-node');
 const Login = () => {
+    const [queryParams] = useSearchParams();
+    const [token, setToken] = useState("");
 
+    useEffect(() => {
+        fetchToken();
+    });
 
-    const [token, setToken] = useState("")
+    function fetchToken() {
+        // for now token is passed to a redirect to this page
+        setToken(queryParams.get("code"));
+    }
 
     function authenticate() {
         let spotifyApi = new SpotifyWebAPI({
@@ -25,6 +34,7 @@ const Login = () => {
             <input></input>
             <input></input>
             <button onClick={() => authenticate()}>Log in with Spotify</button>
+            <p>{token ? "Login Successful!" : "no"}</p>
         </div>
     )
 
