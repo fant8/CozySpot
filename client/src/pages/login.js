@@ -6,22 +6,26 @@ const SpotifyWebAPI = require('spotify-web-api-node');
 const Login = () => {
     const [queryParams] = useSearchParams();
     const [token, setToken] = useState("");
-
+    const [userInfo, updateUserInfo] = useState([]);
+    const spotifyApi = new SpotifyWebAPI({
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        redirectUri: REDIRECT_URI
+    });
     useEffect(() => {
         fetchToken();
+        if (token){
+            getUserInfo();
+        }
     });
 
     function fetchToken() {
         // for now token is passed to a redirect to this page
         setToken(queryParams.get("code"));
+        spotifyApi.setAccessToken(token)
     }
 
     function authenticate() {
-        let spotifyApi = new SpotifyWebAPI({
-            clientId: CLIENT_ID,
-            clientSecret: CLIENT_SECRET,
-            redirectUri: REDIRECT_URI
-        });
         let scopes = ['user-read-private', 'user-read-email'];
         let state = 'randomStringDesuNe';
         let authURL = spotifyApi.createAuthorizeURL(scopes, state);
@@ -29,12 +33,20 @@ const Login = () => {
         window.location.href = authURL;
     }
 
+    function getUserInfo() {
+        spotifyApi.getMe()
+        .then(data => {
+            updateUserInfo([data.body])
+        })
+        .catch(_ => console.log("error"));
+    }
+
     return (
         <div>
             <input></input>
             <input></input>
             <button onClick={() => authenticate()}>Log in with Spotify</button>
-            <p>{token ? "Login Successful!" : "no"}</p>
+            <p>{token ? "Login Successful!" : userInfo[0]}</p>
         </div>
     )
 
