@@ -21,6 +21,7 @@ root.render(
           <Route path="profile" element={<Profile />} />
           <Route path="merge" element={<Merge/> } />
           <Route path="login" element={<Login/> } />
+          <Route path="home" element={<Home/> } />
       </Route>
       </Routes>
     </BrowserRouter>
