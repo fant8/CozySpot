@@ -26,6 +26,7 @@ const Login = () => {
 
     return (
         <div>
+            <h2>Login</h2>
             <input></input>
             <input></input>
             <button onClick={() => authenticate()}>Log in with Spotify</button>
