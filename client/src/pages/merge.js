@@ -4,7 +4,10 @@ const Merge = (props) => {
     const spotifyApi = props.spotifyApi;
     const [songs, updateSongs] = useState([]);
 
-    useEffect(mergePlaylists)
+    useEffect(() => {
+        console.log(spotifyApi.access_token);
+        mergePlaylists();
+    })
 
     function mergePlaylists(){
         spotifyApi.getMySavedTracks({
