@@ -15,7 +15,6 @@ const Home = (props) => {
 
 
     useEffect(() => {
-        //
         getUserInfo()
         console.log("updated")
     });
