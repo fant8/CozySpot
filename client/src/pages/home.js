@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import SpotifyWebAPI from "spotify-web-api-node";
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../apikeys";
 
-const Home = () => {
+
+const Home = (props) => {
     const [queryParams] = useSearchParams();
     const access_token = queryParams.get("access_token");
     const refresh_token = queryParams.get("refresh_token");
     const [userInfo, setUserInfo] = useState({});
-    const spotifyApi = new SpotifyWebAPI({
-        clientId: CLIENT_ID,
-        clientSecret: CLIENT_SECRET,
-        redirectUri: REDIRECT_URI
-    });
+
+    const spotifyApi = props.spotifyApi;
+
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
 
 
     useEffect(() => {
         //
+        getUserInfo()
         console.log("updated")
     });
 

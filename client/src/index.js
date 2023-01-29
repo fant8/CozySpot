@@ -1,19 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SpotifyWebAPI from "spotify-web-api-node";
+import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "./apikeys";
+import App from './App';
+import './index.css';
 import Layout from './pages/layout';
 import Profile from './pages/profile';
 import Home from './pages/home';
 import Login from './pages/login';
 import Merge from './pages/merge';
 
+const spotifyApi = new SpotifyWebAPI({
+  clientId: CLIENT_ID,
+  clientSecret: CLIENT_SECRET,
+  redirectUri: REDIRECT_URI
+});
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    
+
     <BrowserRouter>
       <Routes>
       <Route path="/" element={<Layout />}>
@@ -21,7 +29,7 @@ root.render(
           <Route path="profile" element={<Profile />} />
           <Route path="merge" element={<Merge/> } />
           <Route path="login" element={<Login/> } />
-          <Route path="home" element={<Home/> } />
+          <Route path="home" element={ <Home spotifyApi={spotifyApi}/> } />
       </Route>
       </Routes>
     </BrowserRouter>
