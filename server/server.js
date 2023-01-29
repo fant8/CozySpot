@@ -19,6 +19,7 @@ app.use(express.json());
 app.use(require("./routes/record"));
 // get driver connection
 const dbo = require("./db/conn");
+const { BASE_URL } = require("./apikeys");
 app.listen(port, () => {
   // perform a database connection when server starts
   dbo.connectToServer(function (err) {
@@ -46,10 +47,10 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/login_successful', function(req, res) {
-  let code = req.body.code;
+  let code = req.query.code;
   spotifyApi.authorizationCodeGrant(code)
   .then(data => {
-    res.send(data)
+    res.redirect(BASE_URL + ':3000' + '/home?access_token=' + data.body.access_token + '&refresh_token=' + data.body.refresh_token);
   })
   .catch(err => res.send(err));
   })
