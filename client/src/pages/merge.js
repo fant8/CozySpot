@@ -5,13 +5,14 @@ const Merge = (props) => {
     const [songs, updateSongs] = useState([]);
 
     useEffect(() => {
-        console.log(spotifyApi.access_token);
-        mergePlaylists();
+        console.log(spotifyApi);
+        // mergePlaylists();
     })
 
     function mergePlaylists(){
         spotifyApi.getMySavedTracks({
-            limit: 10
+            limit: 10,
+            offset: 1
         })
         .then(data => updateSongs(data))
         .catch(err => console.log("error! ", err));

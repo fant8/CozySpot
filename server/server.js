@@ -40,7 +40,7 @@ function generateRandomString(length){
 }
 
 app.get('/login', function(req, res) {
-  let scopes = ['user-read-private', 'user-read-email'];
+  let scopes = ['user-read-private', 'user-read-email', 'user-library-read'];
   let state = generateRandomString(16);
   let authURL = spotifyApi.createAuthorizeURL(scopes, state);
   res.redirect(authURL);
