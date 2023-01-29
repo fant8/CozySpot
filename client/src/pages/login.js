@@ -19,25 +19,23 @@ const Login = () => {
 
     function fetchToken() {
         // for now token is passed to a redirect to this page
-        setToken(queryParams.get("code"));
-        spotifyApi.setAccessToken(token)
+        let code = queryParams.get("code");
     }
 
     function authenticate() {
         let scopes = ['user-read-private', 'user-read-email'];
         let state = 'randomStringDesuNe';
         let authURL = spotifyApi.createAuthorizeURL(scopes, state);
-        
-        window.location.href = authURL;
     }
 
     function getUserInfo() {
+        console.log("It is working!")
         if (token) {
             spotifyApi.getMe()
             .then(data => {
                 updateUserInfo(data.body)
             })
-            .catch(res => console.log("error"));
+            .catch(res => console.log("error", res));
         }
     }
 
