@@ -1,3 +1,4 @@
+import Blog from './pages/blog';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -19,6 +20,7 @@ root.render(
           <Route index element={<App />} />
           <Route path="profile" element={<Profile />} />
           <Route path="merge" element={<Merge/> } />
+          <Route path="blog" element={<Blog/> } />
       </Route>
       </Routes>
     </BrowserRouter>
