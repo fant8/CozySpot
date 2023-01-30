@@ -17,7 +17,8 @@ label {
     margin: 10px 0;
 }
 
-input, textarea {
+input,
+textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -46,6 +47,8 @@ button[type=submit]:hover {
 }
 
 .post-container {
+    /* display: flex; */
+    align-items: center;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -59,8 +62,8 @@ button[type=submit]:hover {
     background-size: cover;
     background-position: center;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     float: left;
     margin-right: 10px;
 }
