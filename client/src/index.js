@@ -3,27 +3,30 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Layout from './pages/layout';
 import Profile from './pages/profile';
 import Home from './pages/home';
 import Merge from './pages/merge';
-import Login from './pages/login';
 import Friends from './pages/friends';
+import { useState } from 'react';
+import Login from './pages/login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    
-    <BrowserRouter>
+
+    <BrowserRouter basename='/'>
+
       <Routes>
-      <Route path="/" element={<Layout />}>
+        <Route exact path="/"><Login /></Route>
+        <Route path="/loggedIn/" element={<Layout />}>
           <Route index element={<App />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="merge" element={<Merge/> } />
-          <Route path="login" element={<Login/>}/>
-          <Route path="friends" element={<Friends/>}/>
-      </Route>
+          <Route path="merge" element={<Merge />} />
+          <Route path="friends" element={<Friends />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
@@ -33,3 +36,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

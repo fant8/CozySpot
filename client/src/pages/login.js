@@ -1,50 +1,105 @@
-import React from "react";
-import { useState } from "react";
+import React, { Component } from 'react';
+import { Input } from 'reactstrap';
+import { Form, FormGroup } from 'reactstrap';
+import { Label } from 'reactstrap';
+import { Button } from 'reactstrap';
+import UserProfiles from './users.json';
+import './Login.css';
+import {
+    useLocation,
+    useNavigate,
+    useParams
+} from "react-router-dom";
 
-const Login = () => {
-
-
-    const [token, setToken] = useState("")
-
-    function authenticate() {
-        var request = require('request');
-        /* Load the HTTP library */
-        var http = require('http');
-
-        /* Create an HTTP server to handle responses */
-
-        http
-            .createServer(function (request, response) {
-                response.writeHead(200, { 'Content-Type': 'text/plain' });
-                response.write('Hello World');
-                response.end();
-            })
-            .listen(8888);
-
-
+class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            loginStatus: 'not logged in',
+        };
+    }
+    withRouter(Component) {
+        function ComponentWithRouterProp(props) {
+            let location = useLocation();
+            let navigate = useNavigate();
+            let params = useParams();
+            return (
+                <Component
+                    {...props}
+                    router={{ location, navigate, params }}
+                />
+            );
+        }
     }
 
-    return (
-        <div>
-            <form class="form-signin">
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" value="remember-me"> Remember me</input>
-                            </label>
-                        </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                        <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
-                    </input>
-                </input>
-            </form>
-        </div>
-    )
+    handleUsernameChange = (event) => {
+        this.setState({
+            username: event.target.value,
+        });
+    };
 
+    handlePasswordChange = (event) => {
+        this.setState({
+            password: event.target.value,
+        });
+    };
+
+    handleSubmit = (event) => {
+        var found = false;
+        event.preventDefault();
+        UserProfiles.forEach((user) => {
+            // as of now checks for correct username only and not the password
+            if (user.Username == this.state.username) {
+                found = true;
+            }
+        });
+        if (found) {
+            this.setState({
+                loginStatus: 'Successfully logged in!',
+            });
+            console.log(this.props);
+            this.props.history.push('/home');
+        } else {
+            this.setState({
+                loginStatus: 'Login failed! Inavlid User/Pass',
+            });
+        }
+    };
+
+    render() {
+        return (
+            <div className="login-form">
+                <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Label for="username">Username:</Label>
+                        <Input
+                            id="username"
+                            name="username"
+                            placeholder="For e.g. tmtanzeel"
+                            onChange={this.handleUsernameChange}
+                            type="text"
+                            value={this.state.username}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="examplePassword">Password</Label>
+                        <Input
+                            id="password"
+                            name="password"
+                            placeholder="enter your password"
+                            onChange={this.handlePasswordChange}
+                            type="password"
+                        />
+                    </FormGroup>
+                    <Button type="submit">Submit</Button>
+                </Form>
+                <h2>{this.state.loginStatus}</h2>
+            </div>
+        );
+    }
 }
 
-export default Login
+
+export default withRouter(Login);
