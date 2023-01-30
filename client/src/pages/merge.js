@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import React from "react";
 import Playlist from "../components/playlist";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -34,7 +33,8 @@ const Merge = (props) => {
         <div style={{textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
                 <Playlist />
 
-                <button onClick={() => mergePlaylists()}>Merge Playlists</button>
+                <button onClick={() => mergePlaylists()}>Merge Playlists</button>\
+            </div>
         </div>
     )
 }

@@ -20,12 +20,13 @@ const Login = () => {
     function fetchToken() {
         // for now token is passed to a redirect to this page
         let code = queryParams.get("code");
+        setToken(code);
     }
 
     function authenticate() {
         let scopes = ['user-read-private', 'user-read-email'];
         let state = 'randomStringDesuNe';
-        let authURL = spotifyApi.createAuthorizeURL(scopes, state);
+        // let authURL = spotifyApi.createAuthorizeURL(scopes, state);
     }
 
     function getUserInfo() {

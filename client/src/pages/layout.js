@@ -1,10 +1,7 @@
-import Header from "../components/header";
-import Footer from "../components/footer";
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from '../cozyspot_logo.jpg';
 
 const Layout = () => {

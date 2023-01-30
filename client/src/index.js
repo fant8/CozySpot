@@ -11,7 +11,6 @@ import Profile from './pages/profile';
 import Home from './pages/home';
 import Login from './pages/login';
 import Merge from './pages/merge';
-import Login from './pages/login';
 import Friends from './pages/friends';
 
 const spotifyApi = new SpotifyWebAPI({
