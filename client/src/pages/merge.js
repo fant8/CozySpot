@@ -20,7 +20,7 @@ const Merge = (props) => {
 
     return (
         <div className="temp">
-            <p>Songs: {songs}</p>
+            <p>Songs: {JSON.stringify(songs)}</p>
             <label for="playlist1">Playlist 1</label>
             <input type="text" id="playlist1" name="playlist1"></input>
             
