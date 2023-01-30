@@ -1,3 +1,4 @@
+import Blog from './pages/blog';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
@@ -28,6 +29,7 @@ root.render(
       <Route path="/" element={<Layout />}>
           <Route index element={<App />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="blog" element={<Blog/> } />
           <Route path="merge" element={<Merge spotifyApi={spotifyApi}/> } />
           <Route path="login" element={<Login/> } />
           <Route path="home" element={ <Home spotifyApi={spotifyApi}/> } />
