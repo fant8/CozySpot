@@ -1,27 +1,42 @@
 import React from "react";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../apikeys";
+const SpotifyWebAPI = require('spotify-web-api-node');
 const Login = () => {
+    const [queryParams] = useSearchParams();
+    const [token, setToken] = useState("");
+    const [userInfo, updateUserInfo] = useState({});
+    const spotifyApi = new SpotifyWebAPI({
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        redirectUri: REDIRECT_URI
+    });
+    useEffect(() => {
+        fetchToken();
+        getUserInfo();
+    });
 
-
-    const [token, setToken] = useState("")
+    function fetchToken() {
+        // for now token is passed to a redirect to this page
+        let code = queryParams.get("code");
+    }
 
     function authenticate() {
-        var request = require('request');
-        /* Load the HTTP library */
-        var http = require('http');
+        let scopes = ['user-read-private', 'user-read-email'];
+        let state = 'randomStringDesuNe';
+        let authURL = spotifyApi.createAuthorizeURL(scopes, state);
+    }
 
-        /* Create an HTTP server to handle responses */
-
-        http
-            .createServer(function (request, response) {
-                response.writeHead(200, { 'Content-Type': 'text/plain' });
-                response.write('Hello World');
-                response.end();
+    function getUserInfo() {
+        console.log("It is working!")
+        if (token) {
+            spotifyApi.getMe()
+            .then(data => {
+                updateUserInfo(data.body)
             })
-            .listen(8888);
-
-
+            .catch(res => console.log("error", res));
+        }
     }
 
     return (
@@ -42,6 +57,8 @@ const Login = () => {
                     </input>
                 </input>
             </form>
+            <button onClick={() => authenticate()}>Log in with Spotify</button>
+            <p>{token ? "Login Successful! "  + String(userInfo) : "unsuccessful"}</p>
         </div>
     )
 

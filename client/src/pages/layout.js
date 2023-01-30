@@ -37,6 +37,10 @@ const Layout = () => {
               <li>
                 <Link to="/friends" className="nav-link text-secondary">Friends</Link>
               </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <h1>CozyZone</h1>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
