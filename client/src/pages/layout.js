@@ -2,32 +2,63 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
+import Navbar from 'react-bootstrap/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navigate, useNavigate } from "react-router-dom";
+import logo from '../cozyspot_logo.jpg';
 
 const Layout = () => {
 
-    return (
-        <div>
-          <nav>
-            <ul>
+  const navigate = useNavigate();
+
+  return (
+
+
+    <div >
+      <header class="p-3 text-bg-dark">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <img style={{maxWidth:"3%", borderRadius:"20%", marginRight: "1%"}} src={logo} alt="Logo" />
+            <h2 style={{ marginRight: "20%" }}>CozySpot</h2>
+
+            <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" className="nav-link text-secondary">Home</Link>
               </li>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to="/profile" className="nav-link text-secondary">Profile</Link>
               </li>
               <li>
-                <Link to="/merge">Merge Playlists</Link>
+                <Link to="/merge" className="nav-link text-secondary">Merge Playlists</Link>
+              </li>
+              <li>
+                <Link to="/blog" className="nav-link text-secondary">Blog</Link>
+              </li>
+              <li>
+                <Link to="/friends" className="nav-link text-secondary">Friends</Link>
               </li>
               <li>
                 <Link to="/login">Login</Link>
               </li>
               <h1>CozyZone</h1>
             </ul>
-          </nav>
-    
-          <Outlet />
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+              <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search"></input>
+            </form>
+
+            <div class="text-end">
+              <button type="button" class="btn btn-outline-light me-2" onClick={() => navigate("/login")}>Login</button>
+              <button type="button" class="btn btn-primary" >Sign-up</button>
+            </div>
+          </div>
         </div>
-        )
+      </header>
+
+      <Outlet />
+
+    </div>
+  )
 
 }
 

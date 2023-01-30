@@ -11,6 +11,8 @@ import Profile from './pages/profile';
 import Home from './pages/home';
 import Login from './pages/login';
 import Merge from './pages/merge';
+import Login from './pages/login';
+import Friends from './pages/friends';
 
 const spotifyApi = new SpotifyWebAPI({
   clientId: CLIENT_ID,
@@ -30,6 +32,7 @@ root.render(
           <Route path="merge" element={<Merge spotifyApi={spotifyApi}/> } />
           <Route path="login" element={<Login/> } />
           <Route path="home" element={ <Home spotifyApi={spotifyApi}/> } />
+          <Route path="friends" element={<Friends/>}/>
       </Route>
       </Routes>
     </BrowserRouter>

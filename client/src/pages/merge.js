@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import React from "react";
+import Playlist from "../components/playlist";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Merge = (props) => {
     const spotifyApi = props.spotifyApi;
@@ -28,6 +31,10 @@ const Merge = (props) => {
             <input type="text" id="playlist2" name="playlist2"></input>
             <br></br>
             <button onClick={() => mergePlaylists()}>Merge Playlists</button>
+        <div style={{textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
+                <Playlist />
+
+                <button onClick={() => mergePlaylists()}>Merge Playlists</button>
         </div>
     )
 }
