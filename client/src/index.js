@@ -8,6 +8,8 @@ import Layout from './pages/layout';
 import Profile from './pages/profile';
 import Home from './pages/home';
 import Merge from './pages/merge';
+import Login from './pages/login';
+import Friends from './pages/friends';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +21,8 @@ root.render(
           <Route index element={<App />} />
           <Route path="profile" element={<Profile />} />
           <Route path="merge" element={<Merge/> } />
+          <Route path="login" element={<Login/>}/>
+          <Route path="friends" element={<Friends/>}/>
       </Route>
       </Routes>
     </BrowserRouter>

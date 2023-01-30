@@ -4,33 +4,55 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navigate, useNavigate } from "react-router-dom";
+import logo from '../cozyspot_logo.jpg';
 
 const Layout = () => {
 
+  const navigate = useNavigate();
+
   return (
-    
+
+
     <div >
-      <div className="px-3 py-2 text-bg-dark">
-        <h1 className="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">CozySpot</h1>
-        <nav>
-          <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-            <li>
-              <Link to="/" className="nav-link text-secondary">Home</Link>
-            </li>
-            <li>
-              <Link to="/profile" className="nav-link text-secondary">Profile</Link>
-            </li>
-            <li>
-              <Link to="/merge" className="nav-link text-secondary">Merge Playlists</Link>
-            </li>
-            <li>
-              <Link to="/blog" className="nav-link text-secondary">Blog</Link>
-            </li>
-          </ul>
-        </nav>
+      <header class="p-3 text-bg-dark">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <img style={{maxWidth:"3%", borderRadius:"20%", marginRight: "1%"}} src={logo} alt="Logo" />
+            <h2 style={{ marginRight: "20%" }}>CozySpot</h2>
+
+            <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+              <li>
+                <Link to="/" className="nav-link text-secondary">Home</Link>
+              </li>
+              <li>
+                <Link to="/profile" className="nav-link text-secondary">Profile</Link>
+              </li>
+              <li>
+                <Link to="/merge" className="nav-link text-secondary">Merge Playlists</Link>
+              </li>
+              <li>
+                <Link to="/blog" className="nav-link text-secondary">Blog</Link>
+              </li>
+              <li>
+                <Link to="/friends" className="nav-link text-secondary">Friends</Link>
+              </li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+              <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search"></input>
+            </form>
+
+            <div class="text-end">
+              <button type="button" class="btn btn-outline-light me-2" onClick={() => navigate("/login")}>Login</button>
+              <button type="button" class="btn btn-primary" >Sign-up</button>
+            </div>
+          </div>
         </div>
-        <Outlet />
-        <div className="b-example-divider"></div>
+      </header>
+
+      <Outlet />
+
     </div>
   )
 
