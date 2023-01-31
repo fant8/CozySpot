@@ -46,7 +46,7 @@ const Blog = () => {
             </div>
             {posts.map((post, index) => (
                 <div key={index} className="post-container">
-                    <div className="profile- picture"></div>
+                    <div className="profile-picture"></div>
                     <div>
                         <h2>{post.title}</h2>
                         <p>{post.body}</p>
