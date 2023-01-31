@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/blog.css";
 
-const Blog = () => {
+const Blog = (props) => {
     const [posts, setPosts] = useState([]);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [showForm, setShowForm] = useState(false);
