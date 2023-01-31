@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
 import logo from '../cozyspot_logo.jpg';
 
-const Layout = () => {
+const Layout = (props) => {
 
   const navigate = useNavigate();
 

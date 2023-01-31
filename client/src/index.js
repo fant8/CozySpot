@@ -26,15 +26,15 @@ root.render(
 
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<App />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="blog" element={<Blog/> } />
+          <Route path="profile" element={<Profile spotifyApi={spotifyApi}/>} />
+          <Route path="blog" element={<Blog spotifyApi={spotifyApi}/> } />
           <Route path="merge" element={<Merge spotifyApi={spotifyApi}/> } />
-          <Route path="login" element={<Login/> } />
+          <Route path="login" element={<Login spotifyApi={spotifyApi}/> } />
           <Route path="home" element={ <Home spotifyApi={spotifyApi}/> } />
-          <Route path="friends" element={<Friends/>}/>
-      </Route>
+          <Route path="friends" element={<Friends spotifyApi={spotifyApi}/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react";
 
-const Friends = () => {
+const Friends = (props) => {
     const [users, setUsers] = useState(
         [
             { id: 1, name: 'john doe', bio: "bio 1" },
