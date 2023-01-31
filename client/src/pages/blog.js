@@ -24,7 +24,7 @@ const Blog = () => {
 
     return (
         <div className="container">
-            <div className="center">
+            <div className="centerInput">
                 {!showForm && (
                     <button type="add" onClick={() => setShowForm(true)}>Add</button>
                 )}
