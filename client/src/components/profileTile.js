@@ -1,8 +1,20 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import {useNavigate} from 'react-router-dom';
 
 const ProfileTile = ({ data }) => {
+    const [add, setAdd] = useState("+Add")
+
+    function addFriend(){
+        setAdd("Added")
+    }
+
+    const navigate = useNavigate()
+
+    function viewProfile(){
+        useCallback(() => navigate('/sample', {replace: true}), [navigate]);
+    }
 
     return (
         <div class="col">
@@ -13,9 +25,9 @@ const ProfileTile = ({ data }) => {
                     <p class="card-text">{data.bio}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View Profile</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onClick={() => viewProfile()}>View Profile</button>
                         </div>
-                        <small class="text-muted">Add</small>
+                        <small style={{cursor:"pointer"}} class="text-muted" onClick={() => addFriend()}>{add}</small>
                     </div>
                 </div>
             </div>
@@ -23,3 +35,5 @@ const ProfileTile = ({ data }) => {
     )
 
 }
+
+export default ProfileTile

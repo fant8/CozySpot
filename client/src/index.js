@@ -21,12 +21,14 @@ const spotifyApi = new SpotifyWebAPI({
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
 
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route exact path="/"><Login /></Route>
+        <Route path="/loggedIn/" element={<Layout />}>
           <Route index element={<App />} />
           <Route path="profile" element={<Profile spotifyApi={spotifyApi}/>} />
           <Route path="blog" element={<Blog spotifyApi={spotifyApi}/> } />
@@ -44,3 +46,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

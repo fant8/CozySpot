@@ -15,8 +15,8 @@ const Layout = (props) => {
       <header class="p-3 text-bg-dark">
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <img style={{maxWidth:"3%", borderRadius:"20%", marginRight: "1%"}} src={logo} alt="Logo" />
-            <h2 style={{ marginRight: "20%" }}>CozySpot</h2>
+            <img style={{maxWidth:"3%", borderRadius:"30%", marginRight: "1%"}} src={logo} alt="Logo" />
+            <h2 style={{ marginRight: "30%" }}>CozySpot</h2>
 
             <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
               <li>
@@ -44,10 +44,6 @@ const Layout = (props) => {
               <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search"></input>
             </form>
 
-            <div class="text-end">
-              <button type="button" class="btn btn-outline-light me-2" onClick={() => navigate("/login")}>Login</button>
-              <button type="button" class="btn btn-primary" >Sign-up</button>
-            </div>
           </div>
         </div>
       </header>
