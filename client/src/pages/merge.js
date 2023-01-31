@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Playlist from "../components/playlist";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Merge = () => {
+const Merge = (props) => {
+    const spotifyApi = props.spotifyApi;
+    const [songs, updateSongs] = useState([]);
 
-    function mergePlaylists() {
+    useEffect(() => {
+        console.log(spotifyApi);
+        // mergePlaylists();
+    })
 
+    function mergePlaylists(){
+        spotifyApi.getMySavedTracks({
+            limit: 10,
+            offset: 1
+        })
+        .then(data => updateSongs(data))
+        .catch(err => console.log("error! ", err));
     }
 
     return (

@@ -1,10 +1,7 @@
-import Header from "../components/header";
-import Footer from "../components/footer";
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from '../cozyspot_logo.jpg';
 
 const Layout = () => {
@@ -37,6 +34,10 @@ const Layout = () => {
               <li>
                 <Link to="/friends" className="nav-link text-secondary">Friends</Link>
               </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <h1>CozyZone</h1>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">

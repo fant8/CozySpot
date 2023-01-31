@@ -1,104 +1,69 @@
-import React, { Component } from 'react';
-import { Input } from 'reactstrap';
-import { Form, FormGroup } from 'reactstrap';
-import { Label } from 'reactstrap';
-import { Button } from 'reactstrap';
-import UserProfiles from './users.json';
-import './Login.css';
-import {
-    useLocation,
-    useNavigate,
-    useParams
-} from "react-router-dom";
+import React from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../apikeys";
+const SpotifyWebAPI = require('spotify-web-api-node');
+const Login = () => {
+    const [queryParams] = useSearchParams();
+    const [token, setToken] = useState("");
+    const [userInfo, updateUserInfo] = useState({});
+    const spotifyApi = new SpotifyWebAPI({
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        redirectUri: REDIRECT_URI
+    });
+    useEffect(() => {
+        fetchToken();
+        getUserInfo();
+    });
 
-class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: '',
-            loginStatus: 'not logged in',
-        };
+    function fetchToken() {
+        // for now token is passed to a redirect to this page
+        let code = queryParams.get("code");
+        setToken(code);
     }
-    withRouter(Component) {
-        function ComponentWithRouterProp(props) {
-            let location = useLocation();
-            let navigate = useNavigate();
-            let params = useParams();
-            return (
-                <Component
-                    {...props}
-                    router={{ location, navigate, params }}
-                />
-            );
+
+    function authenticate() {
+        let scopes = ['user-read-private', 'user-read-email'];
+        let state = 'randomStringDesuNe';
+        // let authURL = spotifyApi.createAuthorizeURL(scopes, state);
+    }
+
+    function getUserInfo() {
+        console.log("It is working!")
+        if (token) {
+            spotifyApi.getMe()
+            .then(data => {
+                updateUserInfo(data.body)
+            })
+            .catch(res => console.log("error", res));
         }
     }
 
-    handleUsernameChange = (event) => {
-        this.setState({
-            username: event.target.value,
-        });
-    };
+    return (
+        <div>
+            <form class="form-signin">
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me</input>
+                            </label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                        <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
+                    </input>
+                </input>
+            </form>
+            <button onClick={() => authenticate()}>Log in with Spotify</button>
+            <p>{token ? "Login Successful! "  + String(userInfo) : "unsuccessful"}</p>
+        </div>
+    )
 
-    handlePasswordChange = (event) => {
-        this.setState({
-            password: event.target.value,
-        });
-    };
 
-    handleSubmit = (event) => {
-        var found = false;
-        event.preventDefault();
-        UserProfiles.forEach((user) => {
-            // as of now checks for correct username only and not the password
-            if (user.Username == this.state.username) {
-                found = true;
-            }
-        });
-        if (found) {
-            this.setState({
-                loginStatus: 'Successfully logged in!',
-            });
-            console.log(this.props);
-            this.props.history.push('/home');
-        } else {
-            this.setState({
-                loginStatus: 'Login failed! Inavlid User/Pass',
-            });
-        }
-    };
-
-    render() {
-        return (
-            <div className="login-form">
-                <Form onSubmit={this.handleSubmit}>
-                    <FormGroup>
-                        <Label for="username">Username:</Label>
-                        <Input
-                            id="username"
-                            name="username"
-                            placeholder="For e.g. tmtanzeel"
-                            onChange={this.handleUsernameChange}
-                            type="text"
-                            value={this.state.username}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="examplePassword">Password</Label>
-                        <Input
-                            id="password"
-                            name="password"
-                            placeholder="enter your password"
-                            onChange={this.handlePasswordChange}
-                            type="password"
-                        />
-                    </FormGroup>
-                    <Button type="submit">Submit</Button>
-                </Form>
-                <h2>{this.state.loginStatus}</h2>
-            </div>
-        );
-    }
 }
 
 

@@ -1,32 +1,44 @@
+import Blog from './pages/blog';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SpotifyWebAPI from "spotify-web-api-node";
+import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "./apikeys";
+import App from './App';
+import './index.css';
 import Layout from './pages/layout';
 import Profile from './pages/profile';
 import Home from './pages/home';
+import Login from './pages/login';
 import Merge from './pages/merge';
 import Friends from './pages/friends';
 import { useState } from 'react';
 import Login from './pages/login';
+
+const spotifyApi = new SpotifyWebAPI({
+  clientId: CLIENT_ID,
+  clientSecret: CLIENT_SECRET,
+  redirectUri: REDIRECT_URI
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
 
-    <BrowserRouter basename='/'>
-
+    <BrowserRouter>
       <Routes>
         <Route exact path="/"><Login /></Route>
         <Route path="/loggedIn/" element={<Layout />}>
           <Route index element={<App />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="merge" element={<Merge />} />
-          <Route path="friends" element={<Friends />} />
-        </Route>
+          <Route path="blog" element={<Blog/> } />
+          <Route path="merge" element={<Merge spotifyApi={spotifyApi}/> } />
+          <Route path="login" element={<Login/> } />
+          <Route path="home" element={ <Home spotifyApi={spotifyApi}/> } />
+          <Route path="friends" element={<Friends/>}/>
+      </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
