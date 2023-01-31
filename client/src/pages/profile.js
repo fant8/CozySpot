@@ -1,12 +1,16 @@
 import React from "react";
-import './profile_src/profile.css'
-import pro_pic from './profile_src/temp_profile.jpg'
-import add_friend from './profile_src/add_friend.png'
-import view_more from './profile_src/view_more.png'
-import playlist1 from './profile_src/playlist_1.jpg'
-import playlist2 from './profile_src/playlist_2.jpg'
-import playlist3 from './profile_src/playlist_3.jpg'
-import playlist4 from './profile_src/playlist_4.jpg'
+import '../profile_src/profile.css'
+import pro_pic from '../profile_src/temp_profile.jpg'
+import add_friend from '../profile_src/add_friend.png'
+import view_more from '../profile_src/view_more.png'
+import playlist1 from '../profile_src/playlist_1.jpg'
+import playlist2 from '../profile_src/playlist_2.jpg'
+import playlist3 from '../profile_src/playlist_3.jpg'
+import playlist4 from '../profile_src/playlist_4.jpg'
+import ProfilePlaylist from '../components/profilePlaylist.js'
+import ProfileArtist from '../components/profileArtist.js'
+import ProfileAlbum from '../components/profileAlbum.js'
+import ProfileSong from '../components/profileSong.js'
 
 const Profile = () => {
 
@@ -19,7 +23,6 @@ const Profile = () => {
             <img class="center" style={{width: "2%", height: "2%"}} src={add_friend}></img>
 
             {/* Playlists */} 
-            {/* Need to add Onclick to jump to the actual Playlist */} 
             <h2>Featured Playlists:</h2>
             <img class = "right" style={{width: "7%", height: "4%"}} src={view_more}></img>
             <div class="row">
