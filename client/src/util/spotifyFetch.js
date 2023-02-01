@@ -1,80 +1,90 @@
 import SpotifyWebAPI from "spotify-web-api-node";
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "./apikeys";
 
-const spotifyApi = new SpotifyWebAPI({
-  clientId: CLIENT_ID,
-  clientSecret: CLIENT_SECRET,
-  redirectUri: REDIRECT_URI
-});
+// const spotifyApi = new SpotifyWebAPI({
+//   clientId: CLIENT_ID,
+//   clientSecret: CLIENT_SECRET,
+//   redirectUri: REDIRECT_URI
+// });
 
-class Song {
-    constructor(name, artist, id, image, url){
-        this.name = name;
-        this.artist = artist;
-        this.id = id;
-        this.image = image;
-        this.url = url;
+export class Album {
+    constructor(albumData){
+        this.type = albumData.album_type;
+        this.artists = albumData.artists.map(Artist);
+        this.id = albumData.id;
+        this.release_date = new Date(albumData.release_date);
+        this.images = albumData.images;
+        this.name = albumData.name;
+        this.total_tracks = albumData.total_tracks;
+    }
+}
+export class Song {
+    constructor(songData){
+        this.album = Album(songData.album);
+        this.artists = songData.artists.map(Artist)
+        this.length = songData.duration_ms;
+        this.id = songData.id;
+        this.name = songData.name
+        this.preview_url = songData.preview_url;
     }
 }
 
-class Artist {
-    constructor(name, id, image, url){
-        this.name = name;
-        this.id = id;
-        this.image = image;
-        this.url = url;
+export class Artist {
+    constructor(artistData){
+        this.followers = artistData.followers.total;
+        this.genres = artistData.genres;
+        this.images = artistData.images;
+        this.id = artistData.id;
+        this.name = artistData.name;
     }
 }
 
-class UserAPI {
-    constructor(clientId, clientSecret, redirectUri, accessToken, refreshToken) {
-        this.api = new SpotifyWebAPI({
-            clientId: clientId,
-            clientSecret: clientSecret,
-            redirectUri: redirectUri,
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-        });
-        this.id = "";
-        this.name = "";
-        this.email = "";
-        this.profile_img = "";
+export class User {
+    constructor(userData){
+        this.id = userData.id;
+        this.name = userData.display_name
+        this.email = userData.email;
+        this.profile_img = userData.images[0].url;
+        this.top_songs = [];
         this.top_artists = [];
-        this.top_albums = [];
+    }
+}
+
+export default class UserAPI {
+    constructor(api) {
+        this.api = api;
+        // this.api = new SpotifyWebAPI({
+        //     clientId: clientId,
+        //     clientSecret: clientSecret,
+        //     redirectUri: redirectUri,
+        //     accessToken: accessToken,
+        //     refreshToken: refreshToken,
+        // });
+        this.user = null;
+        this.done = false;
         this.userInfo();
     }
 
     set setUserInfo(data){
-        let body = data.body;
-        this.id = body.id;
-        this.name = body.display_name
-        this.email = body.email;
-        this.profile_img = body.images[0].url;
+        this.user = User(data.body);
     }
 
     set setTopSongs(data){
-
+        this.top_songs = data.body.items.map(Song);
     }
 
     set setTopArtists(data){
-
+        this.top_artists = data.body.items.map(Artist);
     }
 
     userInfo(){
         let requests = [this.api.getMe(), this.api.getMyTopArtists(), this.api.getMyTopTracks()];
-        let handlers = [setUserInfo, setTopSongs, setTopArtists];
+        let handlers = [this.setUserInfo, this.setTopSongs, this.setTopArtists];
         Promise.all(requests)
             .then(resArr => {
                 resArr.forEach((data, i) => {
                     handlers[i](data);
                 });
+                this.done = true;
             })
     }
-}
-
-async function getPlaylists(api, user){
-    let promise = await api.getUserPlaylists();
-    promise.then(
-
-    )
 }
