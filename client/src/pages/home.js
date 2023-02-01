@@ -36,7 +36,7 @@ const Home = (props) => {
     return(
         <div>
             <Layout />
-            <p>Welcome! {user in userInfo ? (userInfo.user ? userInfo.user.name : "") : ""}</p>
+            <p>Welcome! {"user" in userInfo ? (userInfo.user ? userInfo.user.name : "") : ""}</p>
         </div>
     )
 }
