@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/blog.css";
+import Layout from "../components/layout";
 
 const Blog = (props) => {
     const [posts, setPosts] = useState([]);
@@ -24,6 +25,7 @@ const Blog = (props) => {
 
     return (
         <div className="container">
+            <Layout/>
             <div className="centerInput">
                 {!showForm && (
                     <button type="add" onClick={() => setShowForm(true)}>Add</button>

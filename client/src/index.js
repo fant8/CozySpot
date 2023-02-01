@@ -7,7 +7,6 @@ import SpotifyWebAPI from "spotify-web-api-node";
 import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "./apikeys";
 import App from './App';
 import './index.css';
-import Layout from './pages/layout';
 import Profile from './pages/profile';
 import Home from './pages/home';
 import Login from './pages/login';

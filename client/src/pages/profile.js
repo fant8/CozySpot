@@ -11,11 +11,13 @@ import ProfilePlaylist from '../components/profilePlaylist.js'
 import ProfileArtist from '../components/profileArtist.js'
 import ProfileAlbum from '../components/profileAlbum.js'
 import ProfileSong from '../components/profileSong.js'
+import Layout from "../components/layout";
 
 const Profile = (props) => {
 
     return(
         <div classname="UserProfile">
+            <Layout />
             {/* User Profile */} 
             <img class="center" style={{marginTop: "3%", width: "20%", height: "10%"}} src={pro_pic}></img>
             <center><h1>Lon</h1></center>

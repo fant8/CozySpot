@@ -2,6 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react";
 import ProfileTile from "../components/profileTile";
+import Layout from "../components/layout";
 
 const Friends = (props) => {
     const [users, setUsers] = useState(
@@ -20,6 +21,7 @@ const Friends = (props) => {
 
     return (
         <div class="album py-5 bg-light">
+            <Layout/>
             <div class="container">
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">

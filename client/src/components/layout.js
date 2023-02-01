@@ -9,14 +9,12 @@ const Layout = (props) => {
   const navigate = useNavigate();
 
   return (
-
-
     <div >
       <header class="p-3 text-bg-dark">
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <img style={{maxWidth:"3%", borderRadius:"30%", marginRight: "1%"}} src={logo} alt="Logo" />
-            <h2 style={{ marginRight: "30%" }}>CozySpot</h2>
+            <h2 style={{ marginRight: "20%" }}>CozySpot</h2>
 
             <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
               <li>
@@ -34,10 +32,7 @@ const Layout = (props) => {
               <li>
                 <Link to="/friends" className="nav-link text-secondary">Friends</Link>
               </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <h1>CozyZone</h1>
+             
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -48,7 +43,6 @@ const Layout = (props) => {
         </div>
       </header>
 
-      <Outlet />
 
     </div>
   )
