@@ -65,7 +65,7 @@ export default class UserAPI {
     }
 
     setUserInfo(data){
-        this.user = User(data.body);
+        this.user = new User(data.body);
     }
 
     setTopSongs(data){
