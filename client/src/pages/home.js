@@ -7,6 +7,7 @@ const Home = (props) => {
     const access_token = queryParams.get("access_token");
     const refresh_token = queryParams.get("refresh_token");
     const [userInfo, setUserInfo] = useState({});
+    const [hasFetched, updateFetch] = useState(false);
 
     const spotifyApi = props.spotifyApi;
 
@@ -15,8 +16,11 @@ const Home = (props) => {
 
 
     useEffect(() => {
-        getUserInfo()
-        console.log("updated")
+        if (!hasFetched){
+            getUserInfo();
+            updateFetch(true);
+        }
+        console.log("updated");
     });
 
     function getUserInfo() {

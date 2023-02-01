@@ -4,6 +4,7 @@ import {
     ReOrderableList,
     ReOrderableListGroup
 } from 'react-reorderable-list'
+import Song from './song'
 
 
 const Playlist = () => {
@@ -37,7 +38,7 @@ const Playlist = () => {
                     <ReOrderableList key={`list-${index}`}>
                         {list.map((data, index) => (
                             <ReOrderableItem key={`item-${index}`}>
-                                <div style={{ border: '1px solid black', width: '400px', padding: '5%'}}>{data.artist}: {data.name}</div>
+                                <Song data={data}/>
                             </ReOrderableItem>
                         ))}
                     </ReOrderableList>

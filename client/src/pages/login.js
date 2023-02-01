@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../apikeys";
 const SpotifyWebAPI = require('spotify-web-api-node');
-const Login = () => {
+const Login = (props) => {
     const [queryParams] = useSearchParams();
     const [token, setToken] = useState("");
     const [userInfo, updateUserInfo] = useState({});
@@ -63,6 +63,8 @@ const Login = () => {
         </div>
     )
 
+
 }
 
-export default Login
+
+export default Login;

@@ -12,7 +12,7 @@ import Profile from './pages/profile';
 import Home from './pages/home';
 import Login from './pages/login';
 import Merge from './pages/merge';
-import Friends from './pages/friends';
+import Friends from './pages/friends'; 
 
 const spotifyApi = new SpotifyWebAPI({
   clientId: CLIENT_ID,
@@ -21,20 +21,21 @@ const spotifyApi = new SpotifyWebAPI({
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<Layout />}>
+        {/* <Route exact path="/"><Login /></Route> */}
           <Route index element={<App />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="blog" element={<Blog/> } />
-          <Route path="merge" element={<Merge spotifyApi={spotifyApi}/> } />
-          <Route path="login" element={<Login/> } />
-          <Route path="home" element={ <Home spotifyApi={spotifyApi}/> } />
-          <Route path="friends" element={<Friends/>}/>
-      </Route>
+          {/* <Route path="/loggedIn/" element={<Layout />}> */}
+          <Route path="/profile" element={<Profile spotifyApi={spotifyApi}/>} />
+          <Route path="/blog" element={<Blog spotifyApi={spotifyApi}/> } />
+          <Route path="/merge" element={<Merge spotifyApi={spotifyApi}/> } />
+          <Route path="/login" element={<Login spotifyApi={spotifyApi}/> } />
+          <Route path="/home" element={ <Home spotifyApi={spotifyApi}/> } />
+          <Route path="/friends" element={<Friends spotifyApi={spotifyApi}/>}/>
+        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
@@ -44,3 +45,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
