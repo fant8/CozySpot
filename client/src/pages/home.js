@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import UserAPI from "../util/spotifyFetch";
+import Layout from "../components/layout";
 
 const Home = (props) => {
     const [queryParams] = useSearchParams();
