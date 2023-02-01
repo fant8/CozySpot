@@ -19,7 +19,7 @@ export class Album {
 }
 export class Song {
     constructor(songData){
-        this.album = Album(songData.album);
+        this.album = new Album(songData.album);
         this.artists = songData.artists.map(data => new Artist(data))
         this.length = songData.duration_ms;
         this.id = songData.id;
