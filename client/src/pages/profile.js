@@ -1,6 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-=======
 import '../profile_src/profile.css'
 import pro_pic from '../profile_src/temp_profile.jpg'
 import add_friend from '../profile_src/add_friend.png'
@@ -13,15 +11,10 @@ import ProfilePlaylist from '../components/profilePlaylist.js'
 import ProfileArtist from '../components/profileArtist.js'
 import ProfileAlbum from '../components/profileAlbum.js'
 import ProfileSong from '../components/profileSong.js'
->>>>>>> kims171/profile
 
 const Profile = (props) => {
 
     return(
-<<<<<<< HEAD
-        <>
-        <h1>Hello!</h1>
-=======
         <div classname="UserProfile">
             {/* User Profile */} 
             <img class="center" style={{marginTop: "3%", width: "20%", height: "10%"}} src={pro_pic}></img>
@@ -122,12 +115,7 @@ const Profile = (props) => {
                     <p>Album 4</p>
                 </div>
             </div>
-
         </div>
->>>>>>> kims171/profile
-
-        <h2>Your recently listened:</h2>
-        </>
     )
 }
 
