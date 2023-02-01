@@ -23,8 +23,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+<<<<<<< HEAD
+    "start": "react-scripts start --openssl-legacy-provider",
+    "build": "react-scripts --openssl-legacy-provider build",
+=======
     "start": "react-scripts start",
     "build": "react-scripts build",
+>>>>>>> baf240c4e6a1939a4991e4db45c0ca01096b24cb
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
