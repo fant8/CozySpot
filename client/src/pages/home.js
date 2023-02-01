@@ -17,7 +17,10 @@ const Home = (props) => {
 
     useEffect(() => {
         if (!hasFetched){
-            setUserInfo(UserAPI(spotifyApi));
+            let uAPI = new UserAPI(spotifyApi)
+            setUserInfo(uAPI);
+            uAPI.userInfo();
+            updateFetch(true);
         }
         if (!userInfo.done){
             Promise.resolve().then(() => new Promise(res => setTimeout(res, 1000)));
@@ -26,15 +29,13 @@ const Home = (props) => {
     });
 
     function getUserInfo() {
-        spotifyApi.getMe()
-            .then(res => setUserInfo(res))
-            .catch(res => console.log("error response", res));
+        console.log("woot");
     }
 
     return(
         <div>
             <p>Welcome! {JSON.stringify(userInfo)}</p>
-            <button onClick={useEffect}>Click me!</button>
+            <button onClick={getUserInfo}>Click me!</button>
         </div>
     )
 }

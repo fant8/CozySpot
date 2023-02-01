@@ -61,7 +61,7 @@ export default class UserAPI {
         // });
         this.user = null;
         this.done = false;
-        this.userInfo();
+        //this.userInfo();
     }
 
     set setUserInfo(data){
