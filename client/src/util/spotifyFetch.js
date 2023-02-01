@@ -33,9 +33,9 @@ export class Song {
 export class Artist {
     constructor(artistData){
         console.log("Artist data", artistData);
-        this.followers = artistData.followers.total;
-        this.genres = artistData.genres;
-        this.images = artistData.images;
+        // this.followers = artistData.followers.total;
+        // this.genres = artistData.genres;
+        // this.images = artistData.images;
         this.id = artistData.id;
         this.name = artistData.name;
     }
