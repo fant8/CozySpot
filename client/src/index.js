@@ -19,6 +19,8 @@ const spotifyApi = new SpotifyWebAPI({
   redirectUri: REDIRECT_URI
 });
 
+const userApi = null;
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -28,12 +30,12 @@ root.render(
         {/* <Route exact path="/"><Login /></Route> */}
           <Route index element={<App />} />
           {/* <Route path="/loggedIn/" element={<Layout />}> */}
-          <Route path="/profile" element={<Profile spotifyApi={spotifyApi}/>} />
-          <Route path="/blog" element={<Blog spotifyApi={spotifyApi}/> } />
-          <Route path="/merge" element={<Merge spotifyApi={spotifyApi}/> } />
-          <Route path="/login" element={<Login spotifyApi={spotifyApi}/> } />
-          <Route path="/home" element={ <Home spotifyApi={spotifyApi}/> } />
-          <Route path="/friends" element={<Friends spotifyApi={spotifyApi}/>}/>
+          <Route path="/profile" element={<Profile spotifyApi={spotifyApi} userApi={userApi}/>} />
+          <Route path="/blog" element={<Blog spotifyApi={spotifyApi} userApi={userApi}/> } />
+          <Route path="/merge" element={<Merge spotifyApi={spotifyApi} userApi={userApi}/> } />
+          <Route path="/login" element={<Login spotifyApi={spotifyApi} userApi={userApi}/> } />
+          <Route path="/home" element={ <Home spotifyApi={spotifyApi} userApi={userApi}/> } />
+          <Route path="/friends" element={<Friends spotifyApi={spotifyApi} userApi={userApi}/>}/>
         {/* </Route> */}
       </Routes>
     </BrowserRouter>

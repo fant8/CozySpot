@@ -18,7 +18,7 @@ const Layout = (props) => {
 
             <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
               <li>
-                <Link to="/" className="nav-link text-secondary">Home</Link>
+                <Link to="/home" className="nav-link text-secondary">Home</Link>
               </li>
               <li>
                 <Link to="/profile" className="nav-link text-secondary">Profile</Link>

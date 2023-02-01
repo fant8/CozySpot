@@ -36,8 +36,7 @@ const Home = (props) => {
     return(
         <div>
             <Layout />
-            <p>Welcome! {JSON.stringify(userInfo)}</p>
-            <button onClick={getUserInfo}>Click me!</button>
+            <p>Welcome! {user in userInfo ? (userInfo.user ? userInfo.user.name : "") : ""}</p>
         </div>
     )
 }

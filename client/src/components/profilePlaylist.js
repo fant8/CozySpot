@@ -5,8 +5,8 @@ const ProfilePlaylist = (props) => {
     return (
         <div class="column">
             {/* TODO Need to add Onclick to jump to the actual Playlist */} 
-            <img src={props.image} style={{width: "100%", height: "70%"}}></img>
-            <p>{props.name}</p>
+            <img src={props.playlist.image} style={{width: "100%", height: "70%"}}></img>
+            <p>{props.playlist.name}</p>
         </div>
     )
 }
