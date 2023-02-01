@@ -81,7 +81,7 @@ export default class UserAPI {
     }
 
     userInfo(){
-        let requests = [this.api.getMe(), this.api.getMyTopArtists(), this.api.getMyTopTracks()];
+        let requests = [this.api.getMe(), this.api.getMyTopTracks(), this.api.getMyTopArtists()];
         let handlers = [this.setUserInfo, this.setTopSongs, this.setTopArtists];
         Promise.all(requests)
             .then(resArr => {
