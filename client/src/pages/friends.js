@@ -20,11 +20,11 @@ const Friends = (props) => {
 )
 
     return (
-        <div class="album py-5 bg-light">
+        <div className="album py-5 bg-light">
             <Layout/>
-            <div class="container">
+            <div className="container">
 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     {users.map(person => (
                         <ProfileTile data={person}/>
                     ))}

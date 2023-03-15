@@ -1,11 +1,9 @@
 
 const mongoose = require("mongoose")
 
-// any of the fiels can be made mandetory by adding "required: true"
-
 const blogPostSchema = new mongoose.Schema({
   date: {
-    type: date,
+    type: Date,
     required: true,
   },
   title: {
@@ -25,7 +23,7 @@ const blogPostSchema = new mongoose.Schema({
   }
 })
 
-userSchema.pre("save", function (next) {
+blogPostSchema.pre("save", function (next) {
   this.updatedAt = Date.now()
   next()
 })

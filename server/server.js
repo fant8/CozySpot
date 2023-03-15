@@ -1,9 +1,12 @@
 const apikeys = require("./apikeys");
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose")
 const SpotifyWebAPI = require("spotify-web-api-node")
 require("dotenv").config({ path: "./config.env" });
-
+const blogPostRoutes = require("./routes/blogPostRoutes");
+const userRoutes = require("./routes/userRoutes");
+const bodyParser = require("body-parser")
 const app = express();
 
 const port = process.env.PORT || 1337;
@@ -14,7 +17,7 @@ const spotifyApi = new SpotifyWebAPI({
   redirectUri: apikeys.REDIRECT_URI
 });
 
-app.use(cors());
+/*app.use(cors());
 app.use(express.json());
 // app.use(require("./routes/record"));
 // get driver connection
@@ -27,7 +30,25 @@ app.listen(port, () => {
  
   });
   console.log(`Server is running on port: ${port}`);
-});
+});*/
+
+mongoose
+  .connect(
+    "mongodb+srv://cozy_username:Funpassword123@cluster0.oc4qpwy.mongodb.net/cozyspot?retryWrites=true&w=majority",
+    {}
+  )
+  .then(() => {
+    console.log("database is connected")
+  })
+  .catch(err => {
+    console.log(err)
+  })
+app.use(bodyParser.json())
+
+app.use("/blogPosts/", blogPostRoutes)
+app.use("/users/", userRoutes)
+
+app.listen(port, () => console.log(`listening on port ${port}`))
 
 function generateRandomString(length){
   const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";

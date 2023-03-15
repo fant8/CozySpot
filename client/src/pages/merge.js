@@ -25,9 +25,9 @@ const Merge = (props) => {
         <div>
             <Layout/>
             <div style={{ textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
-                <div class="pricing-header p-3 pb-md-4 mx-auto text-center" style={{ margin: "3%" }}>
-                    <h5 class="display-4 fw-normal">Merge Playlists</h5>
-                    <p class="fs-5 text-muted">Drag and drop songs between playlists.</p>
+                <div className="pricing-header p-3 pb-md-4 mx-auto text-center" style={{ margin: "3%" }}>
+                    <h5 className="display-4 fw-normal">Merge Playlists</h5>
+                    <p className="fs-5 text-muted">Drag and drop songs between playlists.</p>
                 </div>
 
                 <Playlist />
