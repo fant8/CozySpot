@@ -23,7 +23,7 @@ const Home = (props) => {
             setUserInfo(uAPI);
             uAPI.userInfo();
             updateFetch(true);
-            props.user = uAPI.user;
+            props.user = uAPI;
             testRequest(); // put user in db
         }
         if (!userInfo.done) {

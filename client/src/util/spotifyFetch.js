@@ -8,7 +8,7 @@ import SpotifyWebAPI from "spotify-web-api-node";
 
 export class Album {
     constructor(albumData){
-        console.log("Album data", albumData);
+        //console.log("Album data", albumData);
         this.type = albumData.album_type;
         this.artists = albumData.artists.map(data => new Artist(data));
         this.id = albumData.id;
@@ -20,7 +20,7 @@ export class Album {
 }
 export class Song {
     constructor(songData){
-        console.log("Song data", songData);
+        //console.log("Song data", songData);
         this.album = new Album(songData.album);
         this.artists = songData.artists.map(data => new Artist(data))
         this.length = songData.duration_ms;
@@ -32,7 +32,7 @@ export class Song {
 
 export class Artist {
     constructor(artistData){
-        console.log("Artist data", artistData);
+        //console.log("Artist data", artistData);
         // this.followers = artistData.followers.total;
         // this.genres = artistData.genres;
         // this.images = artistData.images;
@@ -43,7 +43,7 @@ export class Artist {
 
 export class User {
     constructor(userData){
-        console.log("User data", userData);
+        //console.log("User data", userData);
         this.id = userData.id;
         this.name = userData.display_name
         this.email = userData.email;
