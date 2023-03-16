@@ -95,5 +95,6 @@ export default class UserAPI {
                 this.done = true;
             })
         this.status = "done";
+        console.log("object:", this);
     }
 }
