@@ -33,7 +33,7 @@ const Home = (props) => {
     });
 
     function welcomeMessage() {
-        if (props.userApi.user){
+        if (props.userApi.user != null){
             return `Welcome ${props.userApi.user.name}!`;
         }else{
             return "Welcome!";
