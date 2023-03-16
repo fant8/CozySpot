@@ -73,7 +73,7 @@ app.get('/login_successful', function(req, res) {
   let code = req.query.code;
   spotifyApi.authorizationCodeGrant(code)
   .then(data => {
-    res.redirect(BASE_URL + ':3000' + '/home?access_token=' + data.body.access_token + '&refresh_token=' + data.body.refresh_token);
+    res.redirect(apikeys.BASE_URL + ':3000' + '/home?access_token=' + data.body.access_token + '&refresh_token=' + data.body.refresh_token);
   })
   .catch(err => res.send(err));
   })
