@@ -7,7 +7,7 @@ const Home = (props) => {
     const [queryParams] = useSearchParams();
     const access_token = queryParams.get("access_token");
     const refresh_token = queryParams.get("refresh_token");
-    const [userInfo, setUserInfo] = useState({ done: false });
+    const [userInfo, setUserInfo] = useState({ user: null });
     const [hasFetched, updateFetch] = useState(false);
 
     const spotifyApi = props.spotifyApi;
@@ -19,8 +19,8 @@ const Home = (props) => {
 
     useEffect(() => {
         if (!hasFetched) {
-            setUserInfo(props.userApi);
             props.userApi.userInfo();
+            setUserInfo(props.userApi);
             updateFetch(true);
             console.log(props.userApi)
         }
@@ -31,14 +31,6 @@ const Home = (props) => {
             testRequest();
         }
     });
-
-    function welcomeMessage() {
-        if (props.userApi.user != null){
-            return `Welcome ${props.userApi.user.name}!`;
-        }else{
-            return "Welcome!";
-        }
-    }
 
     function testRequest() {
         let headers = new Headers();
@@ -73,7 +65,7 @@ const Home = (props) => {
     return (
         <div>
             <Layout />
-            <h2>{welcomeMessage()}</h2>
+            <h2>Welcome {userInfo.user != null ? userInfo.user.name : ""}!</h2>
         </div>
     )
 }
