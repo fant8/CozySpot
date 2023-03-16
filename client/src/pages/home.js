@@ -63,6 +63,7 @@ const Home = (props) => {
     return (
         <div>
             <Layout />
+            <button onClick={() => testRequest()}>Test DB Write</button>
             <h2>Welcome!</h2>
         </div>
     )
