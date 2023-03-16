@@ -22,6 +22,7 @@ const Home = (props) => {
             setUserInfo(props.userApi);
             props.userApi.userInfo();
             updateFetch(true);
+            console.log(props.userApi)
         }
         if (!userInfo.done) {
             Promise.resolve().then(() => new Promise(res => setTimeout(res, 1000)));
