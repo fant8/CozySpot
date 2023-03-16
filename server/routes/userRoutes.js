@@ -39,6 +39,7 @@ router.post("/add", async (req, res) => {
 router.get("/allusers", async (req, res) => {
   try {
     const users = await User.find({})
+    console.log(users);
     res.json(users)
   } catch (err) {
     res.json({ message: err })
