@@ -35,7 +35,10 @@ function getUsers() {
         .then(function (response) {
             if (response.ok) {
                 console.log("Click was recorded")
-                console.log(JSON.stringify(response))
+                response.json().then(res => {
+                    console.log(res);
+                    setUsers(res);
+                });
                 return
             }
             throw new Error("Request failed.")
@@ -47,8 +50,8 @@ function getUsers() {
 
     return (
         <div className="album py-5 bg-light">
-            <button onClick={getUsers}></button>
             <Layout/>
+            <button onClick={getUsers}></button>
             <div className="container">
 
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
