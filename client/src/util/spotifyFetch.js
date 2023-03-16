@@ -73,17 +73,17 @@ export default class UserAPI {
         return new User(data.body);
     }
 
-    setTopSongs(data){
+    getTopSongs(data){
         return data.body.items.map(data => new Song(data));
     }
 
-    setTopArtists(data){
+    getTopArtists(data){
         return data.body.items.map(data => new Artist(data));
     }
 
     userInfo(){
         let requests = [this.api.getMe(), this.api.getMyTopTracks(), this.api.getMyTopArtists()];
-        let functions = [this.setUserInfo, this.setTopSongs, this.setTopArtists];
+        let functions = [this.getUserInfo, this.getTopSongs, this.getTopArtists];
         let props = ["user", "top_songs", "top_artists"];
         this.status = "working";
         Promise.all(requests)
