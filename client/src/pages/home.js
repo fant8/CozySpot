@@ -27,13 +27,20 @@ const Home = (props) => {
         if (!userInfo.done) {
             Promise.resolve().then(() => new Promise(res => setTimeout(res, 1000)));
         } else {
+            console.log("Making write!");
             testRequest();
         }
     });
 
+    function welcomeMessage() {
+        if (props.userApi.user){
+            return `Welcome ${props.userApi.user.name}!`;
+        }else{
+            return "Welcome!";
+        }
+    }
 
     function testRequest() {
-        const d = new Date("2022-03-25");
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
@@ -66,8 +73,7 @@ const Home = (props) => {
     return (
         <div>
             <Layout />
-            <button onClick={() => testRequest()}>Test DB Write</button>
-            <h2>Welcome!</h2>
+            <h2>{welcomeMessage()}</h2>
         </div>
     )
 }
