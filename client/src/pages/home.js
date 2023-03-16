@@ -11,7 +11,7 @@ const Home = (props) => {
     const [hasFetched, updateFetch] = useState(false);
 
     const spotifyApi = props.spotifyApi;
-    const user = props.user;
+    //const user = props.userApi;
 
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
@@ -23,7 +23,7 @@ const Home = (props) => {
             setUserInfo(uAPI);
             uAPI.userInfo();
             updateFetch(true);
-            props.user = uAPI;
+            props.userApi = uAPI;
             testRequest(); // put user in db
         }
         if (!userInfo.done) {
@@ -46,7 +46,7 @@ const Home = (props) => {
             method: "POST",
             mode: "cors",
             body: JSON.stringify({
-                name: user.name, password: "---",  email: user.email,
+                name: props.userApi.user.name, password: "---",  email: props.userApi.user.email,
             }),
         })
             .then(function (response) {
