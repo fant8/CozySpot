@@ -61,7 +61,7 @@ export default class UserAPI {
         //     accessToken: accessToken,
         //     refreshToken: refreshToken,
         // });
-        this.user = new User({id: 0, name: "", email: "", profile_img: [{url : 0}]});
+        this.user = new User({id: 0, name: "", email: "", images: [{url : 0}]});
         this.done = false;
         this.status = "initial";
         this.top_songs = [];
