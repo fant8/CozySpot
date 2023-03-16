@@ -11,6 +11,7 @@ const Home = (props) => {
     const [hasFetched, updateFetch] = useState(false);
 
     const spotifyApi = props.spotifyApi;
+    const user = props.user;
 
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
@@ -22,6 +23,8 @@ const Home = (props) => {
             setUserInfo(uAPI);
             uAPI.userInfo();
             updateFetch(true);
+            props.user = uAPI.user;
+            testRequest(); // put user in db
         }
         if (!userInfo.done) {
             Promise.resolve().then(() => new Promise(res => setTimeout(res, 1000)));
@@ -43,7 +46,7 @@ const Home = (props) => {
             method: "POST",
             mode: "cors",
             body: JSON.stringify({
-                name: "jane doe", password: "6969",  email: "zuck@meta.com"
+                name: user.name, password: "---",  email: user.email,
             }),
         })
             .then(function (response) {
@@ -63,7 +66,7 @@ const Home = (props) => {
         <div>
             <Layout />
             <button onClick={() => testRequest()}>Test</button>
-            <p>Welcome! {"user" in userInfo ? (userInfo.user ? userInfo.user.name : "") : ""}</p>
+            <h2>Welcome!</h2>
         </div>
     )
 }

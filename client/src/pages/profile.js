@@ -14,7 +14,8 @@ import ProfileSong from '../components/profileSong.js'
 import Layout from "../components/layout";
 
 const Profile = (props) => {
-
+    const user = props.user;
+    
     return(
         <div classname="UserProfile">
             <Layout />
