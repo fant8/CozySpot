@@ -48,8 +48,6 @@ export class User {
         this.name = userData.display_name
         this.email = userData.email;
         this.profile_img = userData.images[0].url;
-        this.top_songs = [];
-        this.top_artists = [];
     }
 }
 
@@ -63,34 +61,35 @@ export default class UserAPI {
         //     accessToken: accessToken,
         //     refreshToken: refreshToken,
         // });
-        this.user = null;
+        this.user = new User({id: 0, name: "", email: "", profile_img: [{url : 0}]});
         this.done = false;
         this.status = "initial";
+        this.top_songs = [];
+        this.top_artists = [];
         //this.userInfo();
     }
 
-    setUserInfo(data){
-        this.user = new User(data.body);
-        console.log(this.user)
+    getUserInfo(data){
+        return new User(data.body);
     }
 
     setTopSongs(data){
-        this.top_songs = data.body.items.map(data => new Song(data));
-        console.log(this.top_songs);
+        return data.body.items.map(data => new Song(data));
     }
 
     setTopArtists(data){
-        this.top_artists = data.body.items.map(data => new Artist(data));
+        return data.body.items.map(data => new Artist(data));
     }
 
     userInfo(){
         let requests = [this.api.getMe(), this.api.getMyTopTracks(), this.api.getMyTopArtists()];
-        let handlers = [this.setUserInfo, this.setTopSongs, this.setTopArtists];
+        let functions = [this.setUserInfo, this.setTopSongs, this.setTopArtists];
+        let props = ["user", "top_songs", "top_artists"];
         this.status = "working";
         Promise.all(requests)
             .then(resArr => {
                 resArr.forEach((data, i) => {
-                    handlers[i](data);
+                    this[props[i]] = functions[i](data);
                 });
                 this.done = true;
             })
