@@ -20,7 +20,7 @@ const ProfileTile = (props) => {
     return (
         <div className="col">
             <div className="card shadow-sm">
-                <img className="bd-placeholder-img card-img-top" width="100%" height="225" src={props.data.profile_img}></img>
+                <img className="bd-placeholder-img card-img-top" width="100%" height="225" src={props.data.photo}></img>
                 <div className="card-body">
                     <h5 className="card-text">{props.data.name}</h5>
                     <p className="card-text">{props.data.bio}</p>
