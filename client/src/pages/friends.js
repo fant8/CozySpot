@@ -31,14 +31,11 @@ function getUsers() {
         headers: headers,
         method: "GET",
         mode: "cors",
-        body: JSON.stringify({
-            id: props.userApi.user.id, email: props.userApi.user.email, name: props.userApi.user.name, photo: props.userApi.user.profile_img,
-        }),
     })
         .then(function (response) {
             if (response.ok) {
                 console.log("Click was recorded")
-                console.log(response)
+                console.log(JSON.stringify(response))
                 return
             }
             throw new Error("Request failed.")
