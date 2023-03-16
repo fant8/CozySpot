@@ -50,6 +50,7 @@ function getUsers() {
 
     return (
         <div className="album py-5 bg-light">
+            <button onClick={getUsers}></button>
             <Layout/>
             <div className="container">
 
