@@ -20,7 +20,7 @@ const spotifyApi = new SpotifyWebAPI({
   redirectUri: REDIRECT_URI
 });
 
-const userApi = UserAPI(spotifyApi);
+const userApi = new UserAPI(spotifyApi);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
