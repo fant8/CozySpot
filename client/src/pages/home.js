@@ -37,17 +37,17 @@ const Home = (props) => {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
-        headers.append('Origin','http://localhost:3000');
+        headers.append('Origin','http://34.130.27.97:3000');
         headers.append("Access-Control-Allow-Origin", "*");
 
         console.log(props.userApi, props.userApi.user);
 
-        fetch(`http://localhost:1337/users/add`, {
+        fetch(`http://34.130.27.97:1337/users/add`, {
             headers: headers,
             method: "POST",
             mode: "cors",
             body: JSON.stringify({
-                name: props.userApi.user.name, password: "---",  email: props.userApi.user.email,
+                id: props.userApi.user.id, email: props.userApi.user.email, name: props.userApi.user.name, photo: props.userApi.user.profile_img,
             }),
         })
             .then(function (response) {

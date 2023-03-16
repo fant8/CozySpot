@@ -7,18 +7,27 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
   },
-  password: {
+  _id: {
     type: String,
     required: true,
+
   },
   email: {
     type: String,
-    required:true,
+    required: true,
+    unique: true,
   },
-  photo:{
-    type: Buffer,
-  }
+  photo: {
+    type: String,
+  },
+  friends: [{
+    friendId: {
+      type: mongoose.Schema.ObjectId,
+      required: true,
+    }
+  }],
 })
 
 userSchema.pre("save", function (next) {

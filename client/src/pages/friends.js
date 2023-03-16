@@ -19,6 +19,35 @@ const Friends = (props) => {
         ]
 )
 
+
+function getUsers() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('Origin','http://34.130.27.97:3000');
+    headers.append("Access-Control-Allow-Origin", "*");
+
+    fetch(`http://34.130.27.97:1337/users/allusers`, {
+        headers: headers,
+        method: "GET",
+        mode: "cors",
+        body: JSON.stringify({
+            id: props.userApi.user.id, email: props.userApi.user.email, name: props.userApi.user.name, photo: props.userApi.user.profile_img,
+        }),
+    })
+        .then(function (response) {
+            if (response.ok) {
+                console.log("Click was recorded")
+                console.log(response)
+                return
+            }
+            throw new Error("Request failed.")
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+    }
+
     return (
         <div className="album py-5 bg-light">
             <Layout/>

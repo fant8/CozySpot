@@ -18,9 +18,11 @@ const ObjectId = require("mongodb").ObjectId;
 router.post("/add", async (req, res) => {
   console.log(req.body)
   const user = new User({
+    _id: req.body.id,
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password,
+    photo: req.body.photo,
+    friends: [],
   })
 
   try {
@@ -34,7 +36,7 @@ router.post("/add", async (req, res) => {
 })
 
 /*get all users*/
-router.get("/", async (req, res) => {
+router.get("/allusers", async (req, res) => {
   try {
     const users = await User.find()
     res.json(users)
