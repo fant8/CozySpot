@@ -39,6 +39,8 @@ const Home = (props) => {
         headers.append('Origin','http://localhost:3000');
         headers.append("Access-Control-Allow-Origin", "*");
 
+        console.log(props.userApi, props.userApi.user);
+
         fetch(`http://localhost:1337/users/add`, {
             headers: headers,
             method: "POST",
