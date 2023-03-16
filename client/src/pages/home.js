@@ -19,17 +19,14 @@ const Home = (props) => {
 
     useEffect(() => {
         if (!hasFetched) {
-            let uAPI = new UserAPI(spotifyApi)
-            setUserInfo(uAPI);
-            uAPI.userInfo();
+            setUserInfo(props.userApi);
+            props.userApi.userInfo();
             updateFetch(true);
-            props.userApi = uAPI;
             testRequest(); // put user in db
         }
         if (!userInfo.done) {
             Promise.resolve().then(() => new Promise(res => setTimeout(res, 1000)));
         }
-        console.log(UserAPI);
     });
 
 
