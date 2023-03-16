@@ -65,6 +65,7 @@ export default class UserAPI {
         // });
         this.user = null;
         this.done = false;
+        this.status = "initial";
         //this.userInfo();
     }
 
@@ -85,6 +86,7 @@ export default class UserAPI {
     userInfo(){
         let requests = [this.api.getMe(), this.api.getMyTopTracks(), this.api.getMyTopArtists()];
         let handlers = [this.setUserInfo, this.setTopSongs, this.setTopArtists];
+        this.status = "working";
         Promise.all(requests)
             .then(resArr => {
                 resArr.forEach((data, i) => {
@@ -92,5 +94,6 @@ export default class UserAPI {
                 });
                 this.done = true;
             })
+        this.status = "done";
     }
 }
