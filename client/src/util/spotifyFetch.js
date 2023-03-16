@@ -70,12 +70,12 @@ export default class UserAPI {
 
     setUserInfo(data){
         this.user = new User(data.body);
-        console.log(user)
+        console.log(this.user)
     }
 
     setTopSongs(data){
         this.top_songs = data.body.items.map(data => new Song(data));
-        console.log(top_songs);
+        console.log(this.top_songs);
     }
 
     setTopArtists(data){
