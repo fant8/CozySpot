@@ -22,10 +22,11 @@ const Home = (props) => {
             setUserInfo(props.userApi);
             props.userApi.userInfo();
             updateFetch(true);
-            testRequest(); // put user in db
         }
         if (!userInfo.done) {
             Promise.resolve().then(() => new Promise(res => setTimeout(res, 1000)));
+        } else {
+            testRequest();
         }
     });
 
@@ -62,7 +63,6 @@ const Home = (props) => {
     return (
         <div>
             <Layout />
-            <button onClick={() => testRequest()}>Test</button>
             <h2>Welcome!</h2>
         </div>
     )
