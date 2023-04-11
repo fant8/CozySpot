@@ -8,6 +8,7 @@ const Home = (props) => {
     const access_token = queryParams.get("access_token");
     const refresh_token = queryParams.get("refresh_token");
     const [userInfo, setUserInfo] = useState({ user: null });
+    const [songData, setSongs] = useState([]);
     const [hasFetched, updateFetch] = useState(false);
 
     const spotifyApi = props.spotifyApi;
@@ -16,13 +17,21 @@ const Home = (props) => {
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
 
+    function getTracks() {
+        spotifyApi.getMyTopTracks({
+            limit: 10,
+            offset: 1
+        })
+            .then(data => updateSongs(data))
+            .catch(err => console.log("error! ", err));
+    }
 
     useEffect(() => {
         if (!hasFetched) {
             props.userApi.userInfo();
             setUserInfo(props.userApi);
             updateFetch(true);
-            console.log(props.userApi)
+            console.log(props.userApi);
         }
         if (!userInfo.done) {
             Promise.resolve().then(() => new Promise(res => setTimeout(res, 1000)));
@@ -51,14 +60,14 @@ const Home = (props) => {
         })
             .then(function (response) {
                 if (response.ok) {
-                    console.log("Click was recorded")
-                    console.log(response)
+                    console.log("Click was recorded");
+                    console.log(response);
                     return
                 }
-                throw new Error("Request failed.")
+                throw new Error("Request failed.");
             })
             .catch(function (error) {
-                console.log(error)
+                console.log(error);
             })
     }
 
@@ -66,6 +75,8 @@ const Home = (props) => {
         <div>
             <Layout />
             <h2>Welcome {userInfo.user != null ? userInfo.user.name : ""}!</h2>
+            <h3>Your Top Tracks this Month:</h3>
+
         </div>
     )
 }
