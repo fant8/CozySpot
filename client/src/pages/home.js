@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import UserAPI from "../util/spotifyFetch";
 import Layout from "../components/layout";
-
+import ProfileSong from "../components/profileSong";
 const Home = (props) => {
     const [queryParams] = useSearchParams();
     const access_token = queryParams.get("access_token");
@@ -26,12 +26,14 @@ const Home = (props) => {
             .catch(err => console.log("error! ", err));
     }
 
+
     useEffect(() => {
         if (!hasFetched) {
             props.userApi.userInfo();
             setUserInfo(props.userApi);
             updateFetch(true);
             console.log(props.userApi);
+            getTracks();
         }
         if (!userInfo.done) {
             Promise.resolve().then(() => new Promise(res => setTimeout(res, 1000)));
@@ -76,6 +78,7 @@ const Home = (props) => {
             <Layout />
             <h2>Welcome {userInfo.user != null ? userInfo.user.name : ""}!</h2>
             <h3>Your Top Tracks this Month:</h3>
+            {songData.map(song => <ProfileSong song={song}/>)}
         </div>
     )
 }
