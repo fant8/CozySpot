@@ -22,7 +22,7 @@ const Home = (props) => {
             limit: 10,
             offset: 1
         })
-            .then(data => updateSongs(data))
+            .then(data => setSongs(data))
             .catch(err => console.log("error! ", err));
     }
 
@@ -76,7 +76,6 @@ const Home = (props) => {
             <Layout />
             <h2>Welcome {userInfo.user != null ? userInfo.user.name : ""}!</h2>
             <h3>Your Top Tracks this Month:</h3>
-
         </div>
     )
 }
